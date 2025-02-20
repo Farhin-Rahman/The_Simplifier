@@ -33,6 +33,15 @@
 			.custom-textarea::placeholder {
 				color: rgba(255, 255, 255, 0.6);
 			}
+
+			.simplified-text {
+				margin-top: 20px;
+				padding: 15px;
+				background-color: rgba(0, 0, 0, 0.1);
+				color: white;
+				border-radius: 8px;
+				box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+			}
 		</style>
 	</head>
 	<body class="landing is-preload">
@@ -45,9 +54,7 @@
 						<h1><a href="index.html">The Simplifier</a></h1>
 						<nav id="nav">
 							<ul>
-								<li class="special">
-									
-								</li>
+								<li class="special"></li>
 							</ul>
 						</nav>
 					</header>
@@ -69,6 +76,9 @@
 									<li><button type="submit" class="button primary">Submit</button></li>
 								</ul>
 							</form>
+
+							<!-- Div to display the simplified result -->
+							<div id="simplified-result" class="simplified-text" style="display:none;"></div>
 						</div>
 					</section>
 
@@ -89,6 +99,23 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				// Listen for form submission
+				document.getElementById("simplifier-form").addEventListener("submit", function(event) {
+					event.preventDefault(); // Prevent the form from reloading the page
 
+					// Get the input text from the textarea
+					let inputText = document.getElementById("text-to-simplify").value;
+
+					// Example simplification logic: removing extra spaces and trimming
+					let simplifiedText = inputText.replace(/\s+/g, ' ').trim();
+
+					// Show the simplified text
+					let resultDiv = document.getElementById("simplified-result");
+					resultDiv.innerText = "Simplified Text: " + simplifiedText;
+					resultDiv.style.display = "block"; // Make the result visible
+				});
+			</script>
+			
 	</body>
 </html>
