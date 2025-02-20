@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>The Simplifier</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<!-- Added custom styles -->
+		<style>
+			.custom-textarea {
+				width: 80%;
+				max-width: 600px;
+				margin: 20px auto;
+				padding: 15px;
+				border-radius: 8px;
+				border: 2px solid rgba(255, 255, 255, 0.2);
+				background: rgba(255, 255, 255, 0.1);
+				color: white;
+				font-size: 1em;
+				transition: all 0.3s ease;
+				resize: none;
+				box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+			}
+
+			.custom-textarea:focus {
+				outline: none;
+				border-color: #51b6ec;
+				box-shadow: 0 0 20px rgba(81, 182, 236, 0.3);
+				background: rgba(255, 255, 255, 0.15);
+			}
+
+			.custom-textarea::placeholder {
+				color: rgba(255, 255, 255, 0.6);
+			}
+		</style>
+	</head>
+	<body class="landing is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">The Simplifier</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Banner -->
+					<section id="banner">
+						<div class="inner">
+							<h2>The Simplifier</h2>
+							<!-- Modified form with styled textarea -->
+							<form id="simplifier-form">
+								<textarea 
+									class="custom-textarea"
+									name="text-to-simplify" 
+									id="text-to-simplify" 
+									placeholder="Enter text you want to simplify..."
+									rows="3"
+								></textarea>
+								<ul class="actions special">
+									<li><button type="submit" class="button primary">Submit</button></li>
+								</ul>
+							</form>
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="copyright">
+							<li>&copy; The Simplifier</li><li><a href="https://farhin-rahman.github.io/">Farhin Rahman</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
