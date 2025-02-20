@@ -2,10 +2,15 @@ from django.shortcuts import render
 import requests
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Your Hugging Face API details
 HUGGING_FACE_API = "https://api-inference.huggingface.co/models/facebook/bart-large-cnn"
-HUGGING_FACE_API_KEY = "your_hugging_face_api_key"
+HUGGING_FACE_API_KEY = os.getenv('HUGGING_FACE_API_KEY')
 
 # View to render the homepage
 def home(request):
