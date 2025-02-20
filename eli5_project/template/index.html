@@ -89,6 +89,30 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
+			<script>
+				// Listen for form submission
+				document.getElementById("simplifier-form").addEventListener("submit", function(event) {
+					event.preventDefault(); // Prevent the form from reloading the page
+					
+					// Get the input text from the textarea
+					let inputText = document.getElementById("text-to-simplify").value;
+					
+					// Example simplification logic: removing extra spaces and trimming
+					let simplifiedText = inputText.replace(/\s+/g, ' ').trim();
+					
+					// You can replace the above logic with your own simplification function
+			
+					// Output the simplified text (you can also replace this with other methods to display the result)
+					alert("Simplified Text: " + simplifiedText); // Display result in an alert (for now)
+					
+					// Optionally, you can show the result on the page by creating a new element to display it
+					// Example:
+					let resultDiv = document.createElement("div");
+					resultDiv.classList.add("simplified-text");
+					resultDiv.innerText = simplifiedText;
+					document.body.appendChild(resultDiv);
+				});
+			</script>
+			
 	</body>
 </html>
