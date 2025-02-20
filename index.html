@@ -92,42 +92,47 @@
 			</div>
 
 		<!-- Scripts -->
-<!-- Scripts -->
-<script>
-    document.getElementById("simplifier-form").addEventListener("submit", async function(event) {
-        event.preventDefault();
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script>
+			document.getElementById("simplifier-form").addEventListener("submit", async function(event) {
+				event.preventDefault();
 
-        // Get the input text
-        let inputText = document.getElementById("text-to-simplify").value;
-        let resultDiv = document.getElementById("simplified-result");
+				// Get the input text
+				let inputText = document.getElementById("text-to-simplify").value;
+				let resultDiv = document.getElementById("simplified-result");
 
-        // Show loading state
-        resultDiv.style.display = "block";
-        resultDiv.innerText = "Simplifying...";
+				// Show loading state
+				resultDiv.style.display = "block";
+				resultDiv.innerText = "Simplifying...";
 
-        try {
-            // Make API call to your Django backend
-            const response = await fetch('http://127.0.0.1:8000/api/explain/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ text: inputText })
-            });
+				try {
+					// Make API call to your Django backend
+					const response = await fetch('http://127.0.0.1:8000/api/explain/', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({ text: inputText })
+					});
 
-            if (!response.ok) {
-                throw new Error('API request failed');
-            }
+					if (!response.ok) {
+						throw new Error('API request failed');
+					}
 
-            const data = await response.json();
-            resultDiv.innerText = "Simplified Text: " + data.simplified_explanation;
+					const data = await response.json();
+					resultDiv.innerText = "Simplified Text: " + data.simplified_explanation;
 
-        } catch (error) {
-            console.error('Error:', error);
-            resultDiv.innerText = "Sorry, there was an error simplifying your text. Please try again.";
-        }
-    });
-</script>
-			
+				} catch (error) {
+					console.error('Error:', error);
+					resultDiv.innerText = "Sorry, there was an error simplifying your text. Please try again.";
+				}
+			});
+		</script>
 	</body>
 </html>
