@@ -7,7 +7,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Change back to the original model
+# Add back the home view
+def home(request):
+    return render(request, 'index.html')
+
+# Your Hugging Face API details
 HUGGING_FACE_API = "https://api-inference.huggingface.co/models/facebook/bart-large-cnn"
 HUGGING_FACE_API_KEY = os.getenv('HUGGING_FACE_API_KEY')
 
