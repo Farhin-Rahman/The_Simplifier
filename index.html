@@ -54,7 +54,9 @@
 						<h1><a href="index.html">The Simplifier</a></h1>
 						<nav id="nav">
 							<ul>
-								<li class="special"></li>
+								<li class="special">
+									
+								</li>
 							</ul>
 						</nav>
 					</header>
@@ -76,63 +78,70 @@
 									<li><button type="submit" class="button primary">Submit</button></li>
 								</ul>
 							</form>
-
-							<!-- Div to display the simplified result -->
+							<!-- Added div for simplified result -->
 							<div id="simplified-result" class="simplified-text" style="display:none;"></div>
 						</div>
 					</section>
 
 				<!-- Footer -->
 					<footer id="footer">
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
 						<ul class="copyright">
-							<li>&copy; The Simplifier</li><li><a href="https://farhin-rahman.github.io/">Farhin Rahman</a></li>
+							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 						</ul>
 					</footer>
 
 			</div>
 
 		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
-		<script>
-			document.getElementById("simplifier-form").addEventListener("submit", async function(event) {
-				event.preventDefault();
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<!-- Added simplification script -->
+			<script>
+				document.getElementById("simplifier-form").addEventListener("submit", async function(event) {
+					event.preventDefault();
 
-				// Get the input text
-				let inputText = document.getElementById("text-to-simplify").value;
-				let resultDiv = document.getElementById("simplified-result");
+					// Get the input text
+					let inputText = document.getElementById("text-to-simplify").value;
+					let resultDiv = document.getElementById("simplified-result");
 
-				// Show loading state
-				resultDiv.style.display = "block";
-				resultDiv.innerText = "Simplifying...";
+					// Show loading state
+					resultDiv.style.display = "block";
+					resultDiv.innerText = "Simplifying...";
 
-				try {
-					// Make API call to your Django backend
-					const response = await fetch('http://127.0.0.1:8000/api/explain/', {
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json',
-						},
-						body: JSON.stringify({ text: inputText })
-					});
+					try {
+						// Make API call to your Django backend
+						const response = await fetch('http://127.0.0.1:8000/api/explain/', {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify({ text: inputText })
+						});
 
-					if (!response.ok) {
-						throw new Error('API request failed');
+						if (!response.ok) {
+							throw new Error('API request failed');
+						}
+
+						const data = await response.json();
+						resultDiv.innerText = "Simplified Text: " + data.simplified_explanation;
+
+					} catch (error) {
+						console.error('Error:', error);
+						resultDiv.innerText = "Sorry, there was an error simplifying your text. Please try again.";
 					}
-
-					const data = await response.json();
-					resultDiv.innerText = "Simplified Text: " + data.simplified_explanation;
-
-				} catch (error) {
-					console.error('Error:', error);
-					resultDiv.innerText = "Sorry, there was an error simplifying your text. Please try again.";
-				}
-			});
-		</script>
+				});
+			</script>
 	</body>
 </html>
