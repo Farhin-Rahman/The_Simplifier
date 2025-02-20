@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Change to a model better suited for simplification
-HUGGING_FACE_API = "https://api-inference.huggingface.co/models/facebook/bart-large-xsum"
+# Change back to the original model
+HUGGING_FACE_API = "https://api-inference.huggingface.co/models/facebook/bart-large-cnn"
 HUGGING_FACE_API_KEY = os.getenv('HUGGING_FACE_API_KEY')
 
 @api_view(["POST"])
@@ -16,9 +16,6 @@ def explain_like_five(request):
     text = request.data.get("text", "")
     if not text:
         return Response({"error": "No text provided"}, status=400)
-
-    # Add a prompt to encourage simpler explanations
-    prompt = f"Explain this in simple terms, like you're explaining to a child: {text}"
 
     headers = {
         "Authorization": f"Bearer {HUGGING_FACE_API_KEY}"
@@ -28,14 +25,7 @@ def explain_like_five(request):
         response = requests.post(
             HUGGING_FACE_API, 
             headers=headers, 
-            json={
-                "inputs": prompt,
-                "parameters": {
-                    "max_length": 100,
-                    "min_length": 30,
-                    "do_sample": False
-                }
-            }
+            json={"inputs": text}
         )
         response.raise_for_status()
 
