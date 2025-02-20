@@ -92,31 +92,25 @@
 			</div>
 
 		<!-- Scripts -->
-		console.log("JavaScript is loaded");
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script>
-				// Listen for form submission
-				document.getElementById("simplifier-form").addEventListener("submit", function(event) {
-					event.preventDefault(); // Prevent the form from reloading the page
+		<script>
+			console.log("JavaScript is loaded"); // Move this inside the script tags.
 
-					// Get the input text from the textarea
-					let inputText = document.getElementById("text-to-simplify").value;
+			// Listen for form submission
+			document.getElementById("simplifier-form").addEventListener("submit", function(event) {
+				event.preventDefault(); // Prevent the form from reloading the page
 
-					// Example simplification logic: removing extra spaces and trimming
-					let simplifiedText = inputText.replace(/\s+/g, ' ').trim();
+				// Get the input text from the textarea
+				let inputText = document.getElementById("text-to-simplify").value;
 
-					// Show the simplified text
-					let resultDiv = document.getElementById("simplified-result");
-					resultDiv.innerText = "Simplified Text: " + simplifiedText;
-					resultDiv.style.display = "block"; // Make the result visible
-				});
-			</script>
+				// Example simplification logic: removing extra spaces and trimming
+				let simplifiedText = inputText.replace(/\s+/g, ' ').trim();
+
+				// Show the simplified text
+				let resultDiv = document.getElementById("simplified-result");
+				resultDiv.innerText = "Simplified Text: " + simplifiedText;
+				resultDiv.style.display = "block"; // Make the result visible
+			});
+		</script>
 			
 	</body>
 </html>
