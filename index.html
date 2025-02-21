@@ -8,6 +8,7 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<!-- Added custom styles -->
 		<style>
+			/* Your existing styles */
 			.custom-textarea {
 				width: 80%;
 				max-width: 600px;
@@ -23,125 +24,177 @@
 				box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 			}
 
-			.custom-textarea:focus {
-				outline: none;
-				border-color: #51b6ec;
-				box-shadow: 0 0 20px rgba(81, 182, 236, 0.3);
-				background: rgba(255, 255, 255, 0.15);
+			/* Add new styles */
+			.simplification-controls {
+				width: 80%;
+				max-width: 600px;
+				margin: 20px auto;
 			}
 
-			.custom-textarea::placeholder {
-				color: rgba(255, 255, 255, 0.6);
-			}
-
-			.simplified-text {
-				margin-top: 20px;
-				padding: 15px;
-				background-color: rgba(0, 0, 0, 0.1);
-				color: white;
+			.custom-select {
+				width: 100%;
+				padding: 10px;
 				border-radius: 8px;
-				box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+				background: rgba(255, 255, 255, 0.1);
+				color: white;
+				border: 2px solid rgba(255, 255, 255, 0.2);
+				margin-bottom: 15px;
+			}
+
+			.spinner {
+				display: none;
+				width: 50px;
+				height: 50px;
+				border: 3px solid rgba(255,255,255,.3);
+				border-radius: 50%;
+				border-top-color: white;
+				animation: spin 1s ease-in-out infinite;
+				margin: 20px auto;
+			}
+
+			@keyframes spin {
+				to { transform: rotate(360deg); }
+			}
+
+			.example-buttons {
+				margin: 20px auto;
+				width: 80%;
+				max-width: 600px;
+			}
+
+			.example-btn {
+				margin: 5px;
+				padding: 8px 15px;
+				border-radius: 4px;
+				background: rgba(255, 255, 255, 0.1);
+				color: white;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				cursor: pointer;
 			}
 		</style>
 	</head>
 	<body class="landing is-preload">
-
 		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+		<div id="page-wrapper">
+			<!-- Header -->
+			<header id="header" class="alt">
+				<h1><a href="index.html">The Simplifier</a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="special"></li>
+					</ul>
+				</nav>
+			</header>
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<h1><a href="index.html">The Simplifier</a></h1>
-						<nav id="nav">
-							<ul>
-								<li class="special">
-									
-								</li>
-							</ul>
-						</nav>
-					</header>
+			<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h2>The Simplifier</h2>
+					
+					<!-- Example texts -->
+					<div class="example-buttons">
+						<h3>Try these examples:</h3>
+						<button class="example-btn" data-text="Quantum entanglement is a physical phenomenon that occurs when pairs of particles interact in ways such that the quantum state of each particle cannot be described independently.">Quantum Physics</button>
+						<button class="example-btn" data-text="Photosynthesis is the process by which plants convert light energy into chemical energy that can later be released to fuel the organism's activities.">Photosynthesis</button>
+					</div>
 
-				<!-- Banner -->
-					<section id="banner">
-						<div class="inner">
-							<h2>The Simplifier</h2>
-							<!-- Modified form with styled textarea -->
-							<form id="simplifier-form">
-								<textarea 
-									class="custom-textarea"
-									name="text-to-simplify" 
-									id="text-to-simplify" 
-									placeholder="Enter text you want to simplify..."
-									rows="3"
-								></textarea>
-								<ul class="actions special">
-									<li><button type="submit" class="button primary">Submit</button></li>
-								</ul>
-							</form>
-							<!-- Added div for simplified result -->
-							<div id="simplified-result" class="simplified-text" style="display:none;"></div>
+					<!-- Modified form with controls -->
+					<form id="simplifier-form">
+						<div class="simplification-controls">
+							<select id="simplification-level" class="custom-select">
+								<option value="5">Very Simple (Age 5)</option>
+								<option value="10">Simple (Age 10)</option>
+								<option value="15">Moderate (Age 15)</option>
+							</select>
 						</div>
-					</section>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						</ul>
-						<ul class="copyright">
-							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-						</ul>
-					</footer>
+						<textarea 
+							class="custom-textarea"
+							name="text-to-simplify" 
+							id="text-to-simplify" 
+							placeholder="Enter text you want to simplify..."
+							rows="3"
+						></textarea>
 
-			</div>
+						<div class="spinner" id="loading-spinner"></div>
+
+						<ul class="actions special">
+							<li><button type="submit" class="button primary">Simplify</button></li>
+						</ul>
+					</form>
+
+					<!-- Result display -->
+					<div id="simplified-result" class="simplified-text" style="display:none;"></div>
+				</div>
+			</section>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<ul class="copyright">
+					<li>&copy; The Simplifier</li>
+					<li><a href="https://farhin-rahman.github.io/">Farhin Rahman</a></li>
+				</ul>
+			</footer>
+		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<!-- Added simplification script -->
-			<script>
-				document.getElementById("simplifier-form").addEventListener("submit", async function(event) {
-					event.preventDefault();
-
-					// Get the input text
-					let inputText = document.getElementById("text-to-simplify").value;
-					let resultDiv = document.getElementById("simplified-result");
-
-					// Show loading state
-					resultDiv.style.display = "block";
-					resultDiv.innerText = "Simplifying...";
-
-					try {
-						// Make API call to your Django backend
-						const response = await fetch('http://127.0.0.1:8000/api/explain/', {
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/json',
-							},
-							body: JSON.stringify({ text: inputText })
-						});
-
-						if (!response.ok) {
-							throw new Error('API request failed');
-						}
-
-						const data = await response.json();
-						resultDiv.innerText = "Simplified Text: " + data.simplified_explanation;
-
-					} catch (error) {
-						console.error('Error:', error);
-						resultDiv.innerText = "Sorry, there was an error simplifying your text. Please try again.";
-					}
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		
+		<!-- Added functionality -->
+		<script>
+			// Example text buttons
+			document.querySelectorAll('.example-btn').forEach(button => {
+				button.addEventListener('click', () => {
+					document.getElementById('text-to-simplify').value = button.dataset.text;
 				});
-			</script>
+			});
+
+			// Form submission
+			document.getElementById("simplifier-form").addEventListener("submit", async function(event) {
+				event.preventDefault();
+
+				const inputText = document.getElementById("text-to-simplify").value;
+				const level = document.getElementById("simplification-level").value;
+				const resultDiv = document.getElementById("simplified-result");
+				const spinner = document.getElementById("loading-spinner");
+
+				// Show loading state
+				resultDiv.style.display = "none";
+				spinner.style.display = "block";
+
+				try {
+					const response = await fetch('http://127.0.0.1:8000/api/explain/', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({ 
+							text: inputText,
+							level: level
+						})
+					});
+
+					if (!response.ok) {
+						throw new Error('API request failed');
+					}
+
+					const data = await response.json();
+					resultDiv.innerText = data.simplified_explanation;
+					resultDiv.style.display = "block";
+				} catch (error) {
+					console.error('Error:', error);
+					resultDiv.innerText = "Sorry, there was an error simplifying your text. Please try again.";
+					resultDiv.style.display = "block";
+				} finally {
+					spinner.style.display = "none";
+				}
+			});
+		</script>
 	</body>
 </html>
